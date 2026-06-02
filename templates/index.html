@@ -2,55 +2,70 @@
 
 {% block content %}
 
-<!-- 首頁 Hero 區塊：介紹專題名稱與功能 -->
+<!-- 首頁 Hero 區塊：呈現專題名稱、技術核心與系統定位 -->
 <section class="hero">
-    <!-- Hero 文字內容 -->
+    <!-- Hero 文字內容容器 -->
     <div class="hero-content">
-        <!-- 技術標籤 -->
-        <p class="tag">YOLOv8 Object Detection · Flask · Docker</p>
+        <!-- 技術標籤：讓教授一眼看到使用技術 -->
+        <p class="tag">YOLOv8 Object Detection · Flask · Docker · Data Visualization</p>
 
         <!-- 專題主標題 -->
         <h1>基於 YOLOv8 之海洋廢棄物影像偵測與分類統計系統</h1>
 
-        <!-- 專題簡介 -->
+        <!-- 專題正式簡介 -->
         <p class="hero-text">
-            使用者可上傳海洋廢棄物影像，系統會透過 YOLOv8 偵測圖片中的物件，
-            並自動產生分類數量統計、CSV 紀錄與視覺化圖表。
+            本系統以海洋廢棄物影像為分析對象，整合 Flask 網頁介面、YOLOv8 物件偵測、
+            OpenCV 影像標註、Pandas 資料整理與 Matplotlib 視覺化圖表，
+            讓使用者能上傳影像並取得廢棄物偵測結果、分類統計與累積分析資料。
         </p>
 
         <!-- 捲動到上傳區的按鈕 -->
-        <a href="#upload" class="primary-btn">開始上傳圖片</a>
+        <a href="#upload" class="primary-btn">開始影像分析</a>
     </div>
 </section>
 
-<!-- 功能卡片區：簡單說明系統三個核心功能 -->
+<!-- 功能卡片區：說明系統三個核心能力 -->
 <section class="feature-grid">
-    <!-- 功能卡片 1 -->
+    <!-- 功能卡片 1：AI 偵測 -->
     <div class="feature-card">
         <h3>AI 物件偵測</h3>
-        <p>使用 YOLOv8 偵測影像中的海洋廢棄物位置與類別。</p>
+        <p>
+            使用 YOLOv8 模型分析上傳影像，偵測圖片中可能出現的廢棄物物件，
+            並取得類別、信心分數與座標資訊。
+        </p>
     </div>
 
-    <!-- 功能卡片 2 -->
+    <!-- 功能卡片 2：影像標註 -->
     <div class="feature-card">
-        <h3>分類數量統計</h3>
-        <p>將偵測框轉換為各類廢棄物的數量統計資料。</p>
+        <h3>影像結果標註</h3>
+        <p>
+            透過 OpenCV 將偵測框、類別名稱與信心分數標示於圖片上，
+            讓辨識結果能以直觀方式呈現。
+        </p>
     </div>
 
-    <!-- 功能卡片 3 -->
+    <!-- 功能卡片 3：統計視覺化 -->
     <div class="feature-card">
-        <h3>CSV 與圖表輸出</h3>
-        <p>使用 Pandas 與 Matplotlib 產生分析結果與視覺化圖表。</p>
+        <h3>分類統計分析</h3>
+        <p>
+            使用 Pandas 將偵測結果整理為 CSV，並以 Matplotlib 產生分類數量、
+            圖片偵測數與信心分數分布圖。
+        </p>
     </div>
 </section>
 
-<!-- 圖片上傳區 -->
+<!-- 圖片上傳區：提供點選上傳與拖曳上傳功能 -->
 <section id="upload" class="upload-section">
     <!-- 上傳區標題 -->
     <div class="section-title center">
+        <!-- 區塊標籤 -->
         <p class="section-badge">Image Upload</p>
-        <h2>上傳圖片進行 AI 偵測</h2>
-        <p>上傳單張圖片，系統將自動進行物件偵測、分類與統計。</p>
+
+        <!-- 上傳區主標題 -->
+        <h2>上傳圖片進行影像分析</h2>
+
+        <!-- 上傳區說明 -->
+        <p>請上傳海洋廢棄物相關影像，系統將進行物件偵測、結果標註與分類統計。</p>
     </div>
 
     <!-- 上傳表單：送到 Flask 的 detect 路由 -->
@@ -90,20 +105,29 @@
             </div>
         </div>
 
-        <!-- 開始偵測按鈕 -->
+        <!-- 開始分析按鈕 -->
         <button type="submit" class="detect-btn">
-            <span>開始 AI 偵測</span>
+            <span>開始影像分析</span>
         </button>
     </form>
 
-    <!-- 注意事項：放在上傳框外，避免看起來像多一個圖片區 -->
+    <!-- 系統狀態與模型說明 -->
     <div class="upload-note-box">
+        <!-- 說明目前系統已完成的功能 -->
         <p>
-            第一版若尚未放入自訂 <strong>best.pt</strong>，系統會先使用
-            <strong>yolov8n.pt</strong> 做流程測試。
+            本系統已完成影像上傳、物件偵測、結果標註、CSV 紀錄與統計儀表板流程。
         </p>
+
+        <!-- 說明 best.pt 與 yolov8n.pt 的差異，避免過度誇大 -->
         <p>
-            統計儀表板會根據你已分析過的圖片結果，自動累積內容並產生圖表。
+            若尚未放入海洋廢棄物資料集訓練後的 <strong>best.pt</strong>，
+            系統會先使用 <strong>yolov8n.pt</strong> 進行流程測試；
+            後續可替換為專用模型以提升海洋廢棄物辨識準確度。
+        </p>
+
+        <!-- 說明 Dashboard 資料來源 -->
+        <p>
+            統計儀表板會根據已分析過的圖片結果，自動累積內容並產生圖表。
         </p>
     </div>
 </section>
@@ -121,57 +145,66 @@
 
     // 檢查檔案格式是否符合 JPG、JPEG、PNG
     function isAllowedImage(file) {
-        // 允許的圖片格式
+        // 設定允許的圖片格式
         const allowedTypes = ["image/jpeg", "image/png"];
 
-        // 回傳是否符合
+        // 回傳檔案格式是否在允許清單中
         return allowedTypes.includes(file.type);
     }
 
     // 更新畫面上的檔名
     function updateFileName() {
-        // 如果有選擇檔案
+        // 如果使用者有選擇檔案
         if (fileInput.files && fileInput.files.length > 0) {
             // 取得第一個檔案
             const file = fileInput.files[0];
 
-            // 顯示檔名
+            // 顯示檔案名稱
             fileNameText.textContent = file.name;
 
-            // 加上已選檔樣式
+            // 加上已選擇檔案的樣式
             dropZone.classList.add("has-file");
         } else {
-            // 沒有檔案時顯示預設文字
+            // 如果沒有檔案，顯示預設文字
             fileNameText.textContent = "尚未選擇任何檔案";
 
-            // 移除已選檔樣式
+            // 移除已選擇檔案的樣式
             dropZone.classList.remove("has-file");
         }
     }
 
-    // 使用者用按鈕選擇檔案時，更新檔名
+    // 使用者透過按鈕選擇檔案時，更新檔名
     fileInput.addEventListener("change", function () {
+        // 呼叫更新檔名函式
         updateFileName();
     });
 
     // 防止瀏覽器把拖進來的圖片直接打開
     ["dragenter", "dragover", "dragleave", "drop"].forEach(function (eventName) {
+        // 對每個拖曳事件加上監聽
         dropZone.addEventListener(eventName, function (event) {
+            // 阻止瀏覽器預設行為
             event.preventDefault();
+
+            // 阻止事件往外層傳遞
             event.stopPropagation();
         });
     });
 
     // 拖曳進入上傳區時，加上高亮樣式
     ["dragenter", "dragover"].forEach(function (eventName) {
+        // 對拖曳進入與拖曳停留事件加上監聽
         dropZone.addEventListener(eventName, function () {
+            // 加上 drag-over 樣式
             dropZone.classList.add("drag-over");
         });
     });
 
     // 拖曳離開或放開時，移除高亮樣式
     ["dragleave", "drop"].forEach(function (eventName) {
+        // 對拖曳離開與放開事件加上監聽
         dropZone.addEventListener(eventName, function () {
+            // 移除 drag-over 樣式
             dropZone.classList.remove("drag-over");
         });
     });
@@ -181,7 +214,7 @@
         // 取得拖曳進來的檔案
         const files = event.dataTransfer.files;
 
-        // 如果沒有檔案，就停止
+        // 如果沒有檔案，停止執行
         if (!files || files.length === 0) {
             return;
         }
@@ -215,7 +248,7 @@
             return;
         }
 
-        // 觸發檔案選擇
+        // 觸發檔案選擇視窗
         fileInput.click();
     });
 </script>

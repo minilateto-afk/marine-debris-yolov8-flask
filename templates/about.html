@@ -4,77 +4,181 @@
 
 <!-- 專題說明頁標題 -->
 <section class="page-header">
+    <!-- 頁面標籤 -->
     <p class="tag">About Project</p>
-    <h1>專題說明</h1>
-    <p>本頁整理專題動機、系統流程、使用技術與未來改進方向。</p>
-</section>
 
-<!-- 專題動機 -->
-<section class="info-section">
-    <h2>一、專題動機</h2>
+    <!-- 頁面主標題 -->
+    <h1>專題說明</h1>
+
+    <!-- 頁面簡介 -->
     <p>
-        海洋廢棄物會影響海岸環境、生態系與人類活動。本專題希望透過資訊工程中的
-        影像辨識與資料分析方法，將原本需要人工觀察的海洋廢棄物影像，轉換成可統計、
-        可視覺化的數據資料。
+        本頁整理專題動機、系統功能、技術架構、資料流程、限制與未來改進方向。
     </p>
 </section>
 
-<!-- 系統功能 -->
+<!-- 一、專題動機 -->
 <section class="info-section">
+    <!-- 區塊標題 -->
+    <h2>一、專題動機</h2>
+
+    <!-- 動機段落 1 -->
+    <p>
+        海洋廢棄物會影響海岸環境、生態系統與海洋資源管理。傳統影像判讀多仰賴人工觀察，
+        不僅耗費時間，也較難快速整理成可分析的數據資料。因此，本專題嘗試以資訊工程方法，
+        將海洋廢棄物影像轉換為可標註、可統計與可視覺化的資料。
+    </p>
+
+    <!-- 動機段落 2 -->
+    <p>
+        本系統以 YOLOv8 物件偵測為核心，結合 Flask 網頁介面、OpenCV 影像處理、
+        Pandas 資料整理與 Matplotlib 圖表視覺化，建立一套可上傳圖片、顯示偵測結果、
+        紀錄分析資料並呈現統計儀表板的海洋廢棄物影像分析系統。
+    </p>
+</section>
+
+<!-- 二、系統功能 -->
+<section class="info-section">
+    <!-- 區塊標題 -->
     <h2>二、系統功能</h2>
+
+    <!-- 功能列表 -->
     <ul>
-        <li>使用者可上傳海洋廢棄物影像。</li>
-        <li>系統使用 YOLOv8 進行物件偵測。</li>
-        <li>OpenCV 會在圖片上標示框線、類別與信心分數。</li>
-        <li>Pandas 會將偵測結果整理成 CSV。</li>
-        <li>Matplotlib 會產生分類數量與信心分數圖表。</li>
-        <li>Flask Dashboard 會呈現累積分析結果。</li>
+        <!-- 圖片上傳功能 -->
+        <li>提供使用者上傳 JPG、JPEG、PNG 格式影像。</li>
+
+        <!-- YOLOv8 偵測功能 -->
+        <li>使用 YOLOv8 模型進行物件偵測與類別判斷。</li>
+
+        <!-- OpenCV 標註功能 -->
+        <li>透過 OpenCV 將偵測框、類別名稱與信心分數標示於圖片上。</li>
+
+        <!-- CSV 紀錄功能 -->
+        <li>將每次偵測結果紀錄為 CSV，包含圖片名稱、類別、信心分數與座標資訊。</li>
+
+        <!-- Pandas 統計功能 -->
+        <li>使用 Pandas 統計各類別數量、平均信心分數與累積分析紀錄。</li>
+
+        <!-- Matplotlib 視覺化功能 -->
+        <li>使用 Matplotlib 產生分類數量圖、每張圖片偵測數量圖與信心分數分布圖。</li>
+
+        <!-- Dashboard 呈現功能 -->
+        <li>透過 Flask Dashboard 呈現累積偵測結果與統計圖表。</li>
     </ul>
 </section>
 
-<!-- 系統流程 -->
+<!-- 三、系統流程 -->
 <section class="info-section">
+    <!-- 區塊標題 -->
     <h2>三、系統流程</h2>
 
+    <!-- 流程圖文字版 -->
     <div class="flow-box">
+        <!-- 步驟 1 -->
         <span>圖片上傳</span>
+
+        <!-- 箭頭 -->
         <span>→</span>
+
+        <!-- 步驟 2 -->
         <span>YOLOv8 偵測</span>
+
+        <!-- 箭頭 -->
         <span>→</span>
+
+        <!-- 步驟 3 -->
         <span>OpenCV 畫框</span>
+
+        <!-- 箭頭 -->
         <span>→</span>
+
+        <!-- 步驟 4 -->
         <span>CSV 紀錄</span>
+
+        <!-- 箭頭 -->
         <span>→</span>
-        <span>圖表分析</span>
+
+        <!-- 步驟 5 -->
+        <span>統計分析</span>
+
+        <!-- 箭頭 -->
         <span>→</span>
+
+        <!-- 步驟 6 -->
         <span>Dashboard 呈現</span>
     </div>
 </section>
 
-<!-- 使用技術 -->
+<!-- 四、使用技術 -->
 <section class="info-section">
+    <!-- 區塊標題 -->
     <h2>四、使用技術</h2>
 
+    <!-- 技術標籤區 -->
     <div class="tech-grid">
+        <!-- Python -->
         <div>Python</div>
+
+        <!-- Flask -->
         <div>Flask</div>
+
+        <!-- YOLOv8 -->
         <div>YOLOv8</div>
+
+        <!-- OpenCV -->
         <div>OpenCV</div>
+
+        <!-- Pandas -->
         <div>Pandas</div>
+
+        <!-- Matplotlib -->
         <div>Matplotlib</div>
+
+        <!-- Docker -->
         <div>Docker</div>
+
+        <!-- GitHub Codespaces -->
         <div>GitHub Codespaces</div>
     </div>
 </section>
 
-<!-- 限制與未來改進 -->
+<!-- 五、模型說明 -->
 <section class="info-section">
-    <h2>五、限制與未來改進</h2>
+    <!-- 區塊標題 -->
+    <h2>五、模型說明</h2>
+
+    <!-- 模型說明段落 1 -->
     <p>
-        第一版系統主要著重於完成影像上傳、模型推論、結果統計與網頁展示流程。
-        若尚未放入自訂訓練的 best.pt，系統會先以 YOLOv8 預訓練模型測試流程。
-        未來可使用海洋廢棄物影像資料集重新訓練模型，提升塑膠瓶、保麗龍、漁網、
-        罐子等類別的辨識準確度。
+        本系統的核心辨識流程使用 YOLOv8 物件偵測模型。使用者上傳圖片後，
+        系統會將圖片送入模型進行推論，取得每個偵測框的類別、信心分數與座標，
+        再透過 OpenCV 將結果標示於圖片上。
+    </p>
+
+    <!-- 模型說明段落 2 -->
+    <p>
+        若專案資料夾中已放入 <strong>models/best.pt</strong>，系統會優先使用自訂訓練模型。
+        若尚未放入 <strong>best.pt</strong>，系統會先使用 <strong>yolov8n.pt</strong>
+        預訓練模型進行流程測試。此設計能讓網站系統先完成與驗證，後續再替換正式模型。
+    </p>
+</section>
+
+<!-- 六、限制與未來改進 -->
+<section class="info-section">
+    <!-- 區塊標題 -->
+    <h2>六、限制與未來改進</h2>
+
+    <!-- 限制說明 -->
+    <p>
+        目前系統已完成影像上傳、YOLOv8 推論、結果標註、CSV 紀錄與 Dashboard 統計流程。
+        若尚未放入自訂訓練的 <strong>models/best.pt</strong>，系統會先以 YOLOv8 預訓練模型進行流程測試。
+        由於預訓練模型並非專門針對海洋廢棄物資料訓練，因此在水下、模糊、遠距離或光線不足的影像中，
+        可能出現未偵測或誤判情形。
+    </p>
+
+    <!-- 未來改進說明 -->
+    <p>
+        後續可使用公開海洋廢棄物標註資料集重新訓練 YOLOv8 模型，將塑膠瓶、保麗龍、罐子、
+        漁網、塑膠袋等類別建立為專用辨識類別，並將訓練完成的 <strong>best.pt</strong>
+        匯入本系統，以提升模型在海洋廢棄物影像中的辨識準確度。
     </p>
 </section>
 
