@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Dashboard 標題 -->
+<section class="page-header">
+    <p class="tag">Dashboard</p>
+    <h1>分類統計儀表板</h1>
+    <p>統整目前已分析圖片的偵測結果，呈現累積數量、常見類別與信心分數分布。</p>
+</section>
+
+<!-- 整體統計卡片 -->
+<section class="stats-grid four">
+    <div class="stat-card">
+        <span>已分析圖片數</span>
+        <strong>{{ stats.image_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>累積偵測物件數</span>
+        <strong>{{ stats.object_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>最常見類別</span>
+        <strong class="small-text">{{ stats.most_common_class }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>平均信心分數</span>
+        <strong>{{ "%.2f"|format(stats.avg_confidence) }}</strong>
+    </div>
+</section>
+
+<!-- 圖表區 -->
+<section class="chart-grid">
+    <div class="chart-card">
+        <h3>各類海洋廢棄物數量統計</h3>
+        <img src="{{ url_for('static', filename='charts/class_count.png') }}" alt="各類數量統計">
+    </div>
+
+    <div class="chart-card">
+        <h3>每張圖片偵測總數</h3>
+        <img src="{{ url_for('static', filename='charts/image_count.png') }}" alt="每張圖片偵測數量">
+    </div>
+
+    <div class="chart-card">
+        <h3>信心分數分布</h3>
+        <img src="{{ url_for('static', filename='charts/confidence_hist.png') }}" alt="信心分數分布">
+    </div>
+</section>
+
+<!-- 最近分析紀錄 -->
+<section class="table-section">
+    <h2>最近分析紀錄</h2>
+
+    {% if recent_records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>圖片名稱</th>
+                    <th>總數量</th>
+                    <th>平均信心分數</th>
+                    <th>分析時間</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in recent_records %}
+                    <tr>
+                        <td>{{ row.image_name }}</td>
+                        <td>{{ row.total_count }}</td>
+                        <td>{{ "%.2f"|format(row.avg_confidence) }}</td>
+                        <td>{{ row.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-text">目前尚無分析紀錄，請先上傳圖片進行偵測。</p>
+    {% endif %}
+</section>
+
+<!-- CSV 下載按鈕 -->
+<section class="action-row">
+    <a class="secondary-btn" href="{{ url_for('download_detections') }}">下載偵測框 CSV</a>
+    <a class="secondary-btn" href="{{ url_for('download_summary') }}">下載摘要 CSV</a>
+</section>
+
+{% endblock %}

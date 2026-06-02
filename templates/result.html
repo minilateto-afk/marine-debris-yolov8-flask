@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- 結果頁標題 -->
+<section class="page-header">
+    <p class="tag">Detection Result</p>
+    <h1>單張圖片偵測結果</h1>
+    <p>以下顯示原始圖片、YOLOv8 偵測後圖片，以及分類統計結果。</p>
+</section>
+
+<!-- 原圖與偵測圖對照區 -->
+<section class="image-compare">
+    <div class="image-card">
+        <h3>原始圖片</h3>
+        <img src="{{ upload_url }}" alt="原始圖片">
+    </div>
+
+    <div class="image-card">
+        <h3>AI 偵測後圖片</h3>
+        <img src="{{ output_url }}" alt="偵測後圖片">
+    </div>
+</section>
+
+<!-- 統計卡片 -->
+<section class="stats-grid">
+    <div class="stat-card">
+        <span>總偵測數量</span>
+        <strong>{{ summary.total_count }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>平均信心分數</span>
+        <strong>{{ "%.2f"|format(summary.avg_confidence) }}</strong>
+    </div>
+
+    <div class="stat-card">
+        <span>偵測類別數</span>
+        <strong>{{ class_counts|length }}</strong>
+    </div>
+</section>
+
+<!-- 各類別數量表格 -->
+<section class="table-section">
+    <h2>分類統計</h2>
+
+    {% if class_counts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>類別</th>
+                    <th>數量</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for class_name, count in class_counts.items() %}
+                    <tr>
+                        <td>{{ class_name }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-text">本張圖片沒有偵測到符合條件的物件。</p>
+    {% endif %}
+</section>
+
+<!-- 偵測框詳細資料 -->
+<section class="table-section">
+    <h2>偵測框詳細資料</h2>
+
+    {% if detections %}
+        <table>
+            <thead>
+                <tr>
+                    <th>類別</th>
+                    <th>信心分數</th>
+                    <th>x1</th>
+                    <th>y1</th>
+                    <th>x2</th>
+                    <th>y2</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in detections %}
+                    <tr>
+                        <td>{{ item.class_name }}</td>
+                        <td>{{ "%.2f"|format(item.confidence) }}</td>
+                        <td>{{ item.x1 }}</td>
+                        <td>{{ item.y1 }}</td>
+                        <td>{{ item.x2 }}</td>
+                        <td>{{ item.y2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-text">沒有偵測框資料。</p>
+    {% endif %}
+</section>
+
+<!-- 操作按鈕 -->
+<section class="action-row">
+    <a class="secondary-btn" href="{{ url_for('index') }}">再上傳一張</a>
+    <a class="primary-btn" href="{{ url_for('dashboard') }}">查看統計儀表板</a>
+    <a class="secondary-btn" href="{{ url_for('download_summary') }}">下載 Summary CSV</a>
+</section>
+
+{% endblock %}

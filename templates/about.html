@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- 專題說明頁標題 -->
+<section class="page-header">
+    <p class="tag">About Project</p>
+    <h1>專題說明</h1>
+    <p>本頁整理專題動機、系統流程、使用技術與未來改進方向。</p>
+</section>
+
+<!-- 專題動機 -->
+<section class="info-section">
+    <h2>一、專題動機</h2>
+    <p>
+        海洋廢棄物會影響海岸環境、生態系與人類活動。本專題希望透過資訊工程中的
+        影像辨識與資料分析方法，將原本需要人工觀察的海洋廢棄物影像，轉換成可統計、
+        可視覺化的數據資料。
+    </p>
+</section>
+
+<!-- 系統功能 -->
+<section class="info-section">
+    <h2>二、系統功能</h2>
+    <ul>
+        <li>使用者可上傳海洋廢棄物影像。</li>
+        <li>系統使用 YOLOv8 進行物件偵測。</li>
+        <li>OpenCV 會在圖片上標示框線、類別與信心分數。</li>
+        <li>Pandas 會將偵測結果整理成 CSV。</li>
+        <li>Matplotlib 會產生分類數量與信心分數圖表。</li>
+        <li>Flask Dashboard 會呈現累積分析結果。</li>
+    </ul>
+</section>
+
+<!-- 系統流程 -->
+<section class="info-section">
+    <h2>三、系統流程</h2>
+
+    <div class="flow-box">
+        <span>圖片上傳</span>
+        <span>→</span>
+        <span>YOLOv8 偵測</span>
+        <span>→</span>
+        <span>OpenCV 畫框</span>
+        <span>→</span>
+        <span>CSV 紀錄</span>
+        <span>→</span>
+        <span>圖表分析</span>
+        <span>→</span>
+        <span>Dashboard 呈現</span>
+    </div>
+</section>
+
+<!-- 使用技術 -->
+<section class="info-section">
+    <h2>四、使用技術</h2>
+
+    <div class="tech-grid">
+        <div>Python</div>
+        <div>Flask</div>
+        <div>YOLOv8</div>
+        <div>OpenCV</div>
+        <div>Pandas</div>
+        <div>Matplotlib</div>
+        <div>Docker</div>
+        <div>GitHub Codespaces</div>
+    </div>
+</section>
+
+<!-- 限制與未來改進 -->
+<section class="info-section">
+    <h2>五、限制與未來改進</h2>
+    <p>
+        第一版系統主要著重於完成影像上傳、模型推論、結果統計與網頁展示流程。
+        若尚未放入自訂訓練的 best.pt，系統會先以 YOLOv8 預訓練模型測試流程。
+        未來可使用海洋廢棄物影像資料集重新訓練模型，提升塑膠瓶、保麗龍、漁網、
+        罐子等類別的辨識準確度。
+    </p>
+</section>
+
+{% endblock %}

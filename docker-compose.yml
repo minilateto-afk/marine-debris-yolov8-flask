@@ -1,0 +1,22 @@
+# docker-compose.yml：負責啟動 Flask 容器
+services:
+  # 定義一個名為 marine_debris_app 的服務
+  marine_debris_app:
+    # 使用目前資料夾的 Dockerfile 建立映像檔
+    build: .
+
+    # 容器名稱，方便在 docker ps 裡辨識
+    container_name: marine_debris_yolov8_flask
+
+    # 將本機 5000 port 對應到容器內的 5000 port
+    ports:
+      - "5000:5000"
+
+    # 將目前專案資料夾掛載進容器，方便修改程式後立即生效
+    volumes:
+      - .:/app
+
+    # 設定環境變數
+    environment:
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
